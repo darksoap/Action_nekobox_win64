@@ -32,7 +32,7 @@ jobs:
       working-directory: /workdir
       run: |
         df -hT $PWD
-        git clone $REPO_URL -b $REPO_BRANCH nekoray
+        git clone $REPO_URL nekoray
         ln -sf /workdir/nekoray $GITHUB_WORKSPACE/nekoray
         
     - name: Compile the firmware
