@@ -42,7 +42,7 @@ jobs:
     - name: Clone source code
       working-directory: /workdir
       run: |
-        git clone $REPO_URL --recursive
+        git clone $REPO_URL --recursive nekoray
         
     - name: Compile the firmware
       id: compile
