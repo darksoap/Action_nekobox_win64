@@ -1,13 +1,3 @@
-#
-# Copyright (c) 2019-2020 P3TERX <https://p3terx.com>
-#
-# This is free software, licensed under the MIT License.
-# See /LICENSE for more information.
-#
-# https://github.com/P3TERX/Actions-OpenWrt
-# Description: Build OpenWrt using GitHub Actions
-#
-
 name: Build NekoBox
 
 on:
@@ -17,7 +7,6 @@ on:
 env:
   REPO_URL: https://github.com/MatsuriDayo/nekoray
   REPO_BRANCH: master
-  FEEDS_CONF: feeds.conf.default
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: false
@@ -42,7 +31,9 @@ jobs:
     - name: Clone source code
       working-directory: /workdir
       run: |
-        git clone $REPO_URL --recursive nekoray
+        df -hT $PWD
+        git clone $REPO_URL -b $REPO_BRANCH nekoray
+        ln -sf /workdir/nekoray $GITHUB_WORKSPACE/nekoray
         
     - name: Compile the firmware
       id: compile
